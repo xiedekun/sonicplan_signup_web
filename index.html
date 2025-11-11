@@ -4,213 +4,230 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>邮箱验证</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .container {
-      background: white;
-      border-radius: 20px;
-      padding: 40px;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-      max-width: 500px;
-      width: 100%;
-    }
-
-    .success-icon {
-      font-size: 64px;
-      color: #10b981;
-      margin-bottom: 20px;
-    }
-
-    .error-icon {
-      font-size: 64px;
-      color: #ef4444;
-      margin-bottom: 20px;
-    }
-
-    .warning-icon {
-      font-size: 64px;
-      color: #f59e0b;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      color: #1f2937;
-      margin-bottom: 10px;
-      font-size: 24px;
-    }
-
-    p {
-      color: #6b7280;
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
-
-    .button {
-      background: #3b82f6;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s;
-      margin: 5px;
-    }
-
-    .button:hover {
-      background: #2563eb;
-    }
-
-    .button-secondary {
-      background: #6b7280;
-    }
-
-    .button-secondary:hover {
-      background: #4b5563;
-    }
-
-    .footer {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #9ca3af;
-    }
-
-    .hidden {
-      display: none;
-    }
-  </style>
+  <title>声压计划 - 摇滚专辑系统聆听计划</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
-  <!-- 成功状态 -->
-  <div id="success-view" class="container hidden">
-    <div class="success-icon">✅</div>
-    <h1>邮箱验证成功！</h1>
-    <p>您的邮箱地址已经验证成功。请返回应用继续使用。</p>
-    <button class="button" onclick="closeWindow()">关闭页面</button>
-    <div class="footer">验证时间: <span id="success-timestamp"></span></div>
-  </div>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="assets/logo.png" alt="声压计划" class="logo-img">
+        <span class="app-name">声压计划 Sonic Plan</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#features">特色功能</a></li>
+        <li><a href="#how-it-works">使用方式</a></li>
+        <li><a href="#download">下载</a></li>
+      </ul>
+    </div>
+  </nav>
 
-  <!-- 过期状态 -->
-  <div id="expired-view" class="container hidden">
-    <div class="warning-icon">⏰</div>
-    <h1>验证链接已过期</h1>
-    <p>此验证链接已过期，请返回应用重新请求验证邮件。</p>
-    <button class="button" onclick="closeWindow()">关闭页面</button>
-    <button class="button button-secondary" onclick="resendVerification()">重新发送验证邮件</button>
-    <div class="footer">链接已过期</div>
-  </div>
+  <!-- 英雄区域 -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>声压计划</h1>
+        <h2>摇滚乐迷的专辑聆听指南</h2>
+        <p class="hero-description">
+          专为摇滚乐迷设计的专辑管理系统。告别杂乱无章，系统性地探索你喜爱的乐队，记录每一张专辑的聆听旅程。
+        </p>
+        <div class="download-buttons">
+          <a href="#download" class="btn btn-primary">立即下载</a>
+          <a href="#features" class="btn btn-secondary">了解更多</a>
+        </div>
+      </div>
 
-  <!-- 错误状态 -->
-  <div id="error-view" class="container hidden">
-    <div class="error-icon">❌</div>
-    <h1>验证失败</h1>
-    <p id="error-message">验证过程中出现错误，请重试。</p>
-    <button class="button" onclick="closeWindow()">关闭页面</button>
-    <div class="footer" id="error-details"></div>
-  </div>
+      <!-- 轮播区域 -->
+      <div class="hero-image">
+        <div class="hero-carousel">
+          <div class="carousel-track">
+            <!-- 截图1 -->
+            <div class="carousel-slide active">
+              <img src="assets/screenshot1.jpg" alt="声压计划应用界面 - 乐队浏览" class="app-screenshot">
+              <div class="slide-caption">探索丰富的摇滚乐队库</div>
+            </div>
 
-  <!-- 加载状态 -->
-  <div id="loading-view" class="container">
-    <div class="success-icon">⏳</div>
-    <h1>正在验证...</h1>
-    <p>请稍候，我们正在处理您的验证请求。</p>
-    <div class="footer">处理中...</div>
-  </div>
+            <!-- 截图2 -->
+            <div class="carousel-slide">
+              <img src="assets/screenshot2.jpg" alt="声压计划应用界面 - 聆听计划" class="app-screenshot">
+              <div class="slide-caption">记录聆听感受和笔记</div>
+            </div>
 
-  <script>
-    // 显示当前时间
-    document.getElementById('success-timestamp').textContent = new Date().toLocaleString('zh-CN');
+            <!-- 截图3 -->
+            <div class="carousel-slide">
+              <img src="assets/screenshot3.jpg" alt="声压计划应用界面 - 专辑显示" class="app-screenshot">
+              <div class="slide-caption">查看完整专辑信息</div>
+            </div>
 
-    // 解析URL参数
-    const urlParams = new URLSearchParams(window.location.search);
-    const type = urlParams.get('type');
-    const token = urlParams.get('token');
-    const code = urlParams.get('code');
-    const error = urlParams.get('error');
-    const errorDescription = urlParams.get('error_description');
+            <!-- 截图4 -->
+            <div class="carousel-slide">
+              <img src="assets/screenshot4.jpg" alt="声压计划应用界面 - 专辑详情" class="app-screenshot">
+              <div class="slide-caption">创建个性化聆听计划</div>
+            </div>
+          </div>
 
-    function showView(viewId) {
-      // 隐藏所有视图
-      document.getElementById('success-view').classList.add('hidden');
-      document.getElementById('expired-view').classList.add('hidden');
-      document.getElementById('error-view').classList.add('hidden');
-      document.getElementById('loading-view').classList.add('hidden');
+          <!-- 轮播导航 -->
+          <div class="carousel-nav">
+            <button class="carousel-prev" aria-label="上一张">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
 
-      // 显示指定视图
-      document.getElementById(viewId).classList.remove('hidden');
-    }
+            <div class="carousel-indicators">
+              <span class="indicator active" data-slide="0"></span>
+              <span class="indicator" data-slide="1"></span>
+              <span class="indicator" data-slide="2"></span>
+              <span class="indicator" data-slide="3"></span>
+            </div>
 
-    function closeWindow() {
-      // 尝试关闭窗口
-      if (window.history.length > 1) {
-        window.history.back();
-      } else {
-        window.close();
-      }
-    }
+            <button class="carousel-next" aria-label="下一张">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    function resendVerification() {
-      // 这里可以添加重新发送验证邮件的逻辑
-      alert('请返回应用重新请求验证邮件。');
-    }
 
-    // 根据URL参数显示相应视图
-    function handleVerification() {
-      if (error) {
-        // 显示错误信息
-        document.getElementById('error-message').textContent =
-          errorDescription || '验证过程中出现错误';
-        document.getElementById('error-details').textContent = `错误代码: ${error}`;
-        showView('error-view');
+  <!-- 特色功能 -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2>核心特色</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎸</div>
+          <h3>专业乐队库</h3>
+          <p>收录主流摇滚乐队完整录音室专辑，排除单曲和精选集干扰</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>个性化聆听计划</h3>
+          <p>创建专属专辑聆听清单，系统化探索音乐世界</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✍️</div>
+          <h3>聆听笔记</h3>
+          <p>记录每张专辑的聆听感受，建立个人音乐档案</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✅</div>
+          <h3>进度追踪</h3>
+          <p>标记已听专辑，清晰掌握聆听进度</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // 特定错误处理
-        if (error === 'expired_link' || errorDescription?.includes('expired')) {
-          showView('expired-view');
-        }
-      } else if (token || code) {
-        // 有token或code，显示成功（实际应该调用API验证）
-        setTimeout(() => {
-          showView('success-view');
-        }, 2000);
-      } else {
-        // 没有参数，可能是直接访问
-        showView('error-view');
-        document.getElementById('error-message').textContent =
-          '无效的验证链接，请使用邮件中的完整链接。';
-      }
-    }
+  <!-- 使用方式 -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="container">
+      <h2>如何使用声压计划</h2>
+      <div class="steps">
+        <div class="step">
+          <span class="step-number">1</span>
+          <h3>发现乐队</h3>
+          <p>浏览我们精心整理的摇滚乐队数据库</p>
+        </div>
+        <div class="step">
+          <span class="step-number">2</span>
+          <h3>制定计划</h3>
+          <p>将感兴趣的专辑加入聆听计划</p>
+        </div>
+        <div class="step">
+          <span class="step-number">3</span>
+          <h3>开始聆听</h3>
+          <p>按计划系统性地欣赏专辑</p>
+        </div>
+        <div class="step">
+          <span class="step-number">4</span>
+          <h3>记录感悟</h3>
+          <p>标记已听，写下聆听笔记和感受</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  -- 下载区域 -->
+  <section id="download" class="download">
+    <div class="container">
+      <h2>下载声压计划</h2>
+      <p class="download-description">
+        立即开始你的摇滚专辑探索之旅
+      </p>
+      <div class="download-options">
+        <div class="download-card">
+          <div class="platform-icon">🤖</div>
+          <h3>Android 版本</h3>
+          <p>v0.1.0</p>
+          <a href="https://jxwbqqtxgduudipiycyp.supabase.co/storage/v1/object/public/release/android/sonicplan_0_1_0.apk"
+            class="btn btn-primary" download="sonicplan_0_1_0.apk">
+            立即下载
+          </a>
+        </div>
+        <div class="download-card">
+          <div class="platform-icon">📱</div>
+          <h3>iOS 版本</h3>
+          <p>敬请期待</p>
+          <button class="btn btn-disabled" disabled>即将发布</button>
+        </div>
+      </div>
 
-    // 页面加载完成后处理验证
-    window.addEventListener('load', function () {
-      // 模拟验证过程
-      setTimeout(handleVerification, 1500);
-    });
+      <!-- 安装说明 -->
+      <!-- <div class="installation-guide">
+        <h3>Android 安装指南</h3>
+        <div class="guide-steps">
+          <div class="guide-step">
+            <span class="step-number">1</span>
+            <p>点击上方按钮下载 APK 文件</p>
+          </div>
+          <div class="guide-step">
+            <span class="step-number">2</span>
+            <p>在下载完成通知中点击安装，或到文件管理器中找到下载的 APK 文件</p>
+          </div>
+          <div class="guide-step">
+            <span class="step-number">3</span>
+            <p>如为首次安装，需授权"允许安装未知应用"权限</p>
+          </div>
+          <div class="guide-step">
+            <span class="step-number">4</span>
+            <p>等待安装完成，即可开始使用声压计划</p>
+          </div>
+        </div>
+      </div> -->
 
-    // 5秒后自动尝试关闭成功页面
-    setTimeout(() => {
-      if (!document.getElementById('loading-view').classList.contains('hidden')) {
-        closeWindow();
-      }
-    }, 5000);
-  </script>
+
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo">
+            <img src="assets/logo.png" alt="声压计划" class="logo-img">
+            <span class="app-name">声压计划</span>
+          </div>
+          <p>摇滚乐迷的专辑聆听指南</p>
+        </div>
+        <div class="footer-links">
+          <a href="mailto:sonicplan@163.com">联系我们 sonicplan@163.com</a>
+          <!-- <a href="#">隐私政策</a> -->
+          <!-- <a href="#">用户协议</a> -->
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 声压计划. 保留所有权利.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
